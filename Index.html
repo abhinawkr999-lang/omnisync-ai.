@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>OmniSync AI - Universal Hub</title>
+    <!-- Tailwind CSS for modern mobile-first styling -->
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-slate-950 text-slate-100 font-sans antialiased min-h-screen flex flex-col">
+
+    <!-- Header -->
+    <header class="bg-slate-900 border-b border-slate-800 p-4 sticky top-0 z-50 flex justify-between items-center">
+        <h1 class="text-xl font-bold bg-gradient-to-r from-blue-400 to-indigo-500 bg-clip-text text-transparent">OmniSync AI</h1>
+        <span class="text-xs bg-indigo-950 text-indigo-300 px-2 py-1 rounded-full border border-indigo-800">Global Edition</span>
+    </header>
+
+    <!-- Main Container -->
+    <main class="flex-1 p-4 max-w-md mx-auto w-full space-y-6 pb-20">
+
+        <!-- AI Study Companion Section -->
+        <section class="bg-slate-900 border border-slate-800 rounded-2xl p-4 shadow-xl">
+            <h2 class="text-lg font-semibold text-blue-400 mb-2">🧠 AI Study & Knowledge Hub</h2>
+            <p class="text-xs text-slate-400 mb-3">Ask any question or type a topic to generate instant summaries or practice points.</p>
+            
+            <div class="space-y-2">
+                <input type="text" id="ai-input" placeholder="e.g., Explain Newton's Laws or Quadratic Equations" class="w-full bg-slate-950 border border-slate-700 rounded-xl p-3 text-sm focus:outline-none focus:border-blue-500 text-slate-200">
+                <button onclick="askAI()" class="w-full bg-blue-600 hover:bg-blue-500 text-white font-medium py-2 rounded-xl text-sm transition shadow-lg">Generate AI Insight</button>
+            </div>
+
+            <div id="ai-output" class="mt-4 bg-slate-950 border border-slate-800 rounded-xl p-3 text-sm text-slate-300 hidden">
+                <!-- AI Response Appears Here -->
+            </div>
+        </section>
+
+        <!-- Quick Task Tracker Section -->
+        <section class="bg-slate-900 border border-slate-800 rounded-2xl p-4 shadow-xl">
+            <h2 class="text-lg font-semibold text-indigo-400 mb-2">📋 Daily Focus Tracker</h2>
+            <div class="flex gap-2 mb-3">
+                <input type="text" id="task-input" placeholder="Add a new goal..." class="flex-1 bg-slate-950 border border-slate-700 rounded-xl p-2.5 text-sm focus:outline-none focus:border-indigo-500 text-slate-200">
+                <button onclick="addTask()" class="bg-indigo-600 hover:bg-indigo-500 text-white px-4 py-2.5 rounded-xl text-sm font-medium transition">Add</button>
+            </div>
+            <ul id="task-list" class="space-y-2 text-sm">
+                <!-- Tasks will list here dynamically -->
+            </ul>
+        </section>
+
+    </main>
+
+    <!-- Footer Navigation -->
+    <footer class="bg-slate-900 border-t border-slate-800 p-3 text-center text-xs text-slate-500 fixed bottom-0 w-full">
+        OmniSync AI &bull; Built for Worldwide Access
+    </footer>
+
+    <!-- App Logic Script -->
+    <script>
+        // AI Simulation Function (Can be integrated with real API later)
+        function askAI() {
+            const input = document.getElementById('ai-input').value.trim();
+            const outputBox = document.getElementById('ai-output');
+            
+            if (!input) {
+                alert("Please enter a topic or question!");
+                return;
+            }
+
+            outputBox.classList.remove('hidden');
+            outputBox.innerHTML = `<span class="text-blue-400 font-semibold">Analyzing "${input}"...</span><br><br>• Core Concept: Essential breakdown mapped for rapid mastery.<br>• Quick Summary: Optimized for instant study recall and practical use.<br>• Status: Processed locally via OmniSync engine.`;
+        }
+
+        // Task Management Logic
+        function addTask() {
+            const taskInput = document.getElementById('task-input');
+            const taskList = document.getElementById('task-list');
+            const taskText = taskInput.value.trim();
+
+            if (!taskText) return;
+
+            const li = document.createElement('li');
+            li.className = "flex justify-between items-center bg-slate-950 border border-slate-800 p-2.5 rounded-xl text-slate-300";
+            li.innerHTML = `
+                <span>${taskText}</span>
+                <button onclick="this.parentElement.remove()" class="text-red-400 hover:text-red-300 text-xs px-2 py-1">Done</button>
+            `;
+
+            taskList.appendChild(li);
+            taskInput.value = "";
+        }
+    </script>
+</body>
+  </html>
+                  
